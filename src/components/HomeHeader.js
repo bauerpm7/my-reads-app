@@ -1,41 +1,55 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import { AppBar, Toolbar, Typography, Grid } from 'material-ui';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+import Button from 'material-ui/Button';
+import IconButton from 'material-ui/IconButton';
+import MenuIcon from 'material-ui-icons/Menu';
+import { Icon } from 'material-ui';
+import { Link } from 'react-router-dom'
 
 
 const styles = {
-  icon: {
-    color: 'inherit',
-    paddingRight: 30
+  root: {
+    flexGrow: 1,
   },
-
-  header: {
-    paddingTop:15,
-    height: 100
+  flex: {
+    flex: 1,
+  },
+  icon: {
+    paddingLeft: 10,
+    paddingRight: 10
+  },
+  link:{
+    color:'inherit'
+  },
+  appBar: { 
+    boxShadow: 'none'
   }
 };
 
-
-function LibraryHeader(props) {
+function HomeHeader(props) {
   const { classes } = props;
   return (
-    <div>
-      <AppBar className={classes.header} position="static">
+    <div className={classes.root}>
+      <AppBar position="static" className={classes.appBar}>
         <Toolbar>
-          <Typography
-          className={classes.icon}>
-            <span className="glyphicons glyphicons-book-open x2"></span>
+          <Typography className={classes.flex}>
           </Typography>
-          <i class="material-icons">search</i>
+          <Link to='/library' className={classes.link}>
+            <Icon className={classes.icon}>library_books</Icon>
+          </Link>
+          <Icon className={classes.icon}>search</Icon>
         </Toolbar>
       </AppBar>
     </div>
   );
 }
 
-LibraryHeader.propTypes = {
+HomeHeader.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(LibraryHeader);
+export default withStyles(styles)(HomeHeader);

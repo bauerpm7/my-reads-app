@@ -3,10 +3,18 @@ import PropTypes from 'prop-types'
 import BookShelf from './BookShelf'
 import { withStyles } from 'material-ui/styles'
 import { Icon } from 'material-ui'
+import { Link } from 'react-router-dom'
 
 const styles = {
   library: {
-    marginTop: 100
+    marginTop: 120,
+    paddingBottom:120
+  },
+  addBooks: {
+    position: 'fixed',
+    bottom: 40,
+    right: 40,
+    fontSize: 60
   }
 }
 
@@ -37,7 +45,12 @@ class Library extends Component {
           updateBook = {updateBook}
           bookShelfName = "Read"
         />
-
+        <Link 
+        to = "/search">
+          <Icon className={classes.addBooks}
+          color='primary'
+          >add_circle</Icon>
+        </Link>
       </div>
       )
    }

@@ -5,7 +5,7 @@ import { withStyles } from 'material-ui/styles'
 import { Icon } from 'material-ui'
 import { Link } from 'react-router-dom'
 
-const styles = {
+const styles = theme => ({
   library: {
     marginTop: 120,
     paddingBottom:120
@@ -14,9 +14,14 @@ const styles = {
     position: 'fixed',
     bottom: 40,
     right: 40,
-    fontSize: 60
+    fontSize: 60,
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 48,
+      right:25,
+      bottom: 25
+    }
   }
-}
+})
 
 class Library extends Component {
   

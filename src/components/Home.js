@@ -112,7 +112,6 @@ class Home extends Component{
           About MyReads
           </Typography>
           <Typography
-          component='p'
           variant='headline'
           className={classes.description}>
           <p>MyReads is a book tracking app built for Project #5 of 

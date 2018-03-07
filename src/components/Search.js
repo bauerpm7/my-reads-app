@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import escapeRegExp from 'escape-string-regexp';
 import { withStyles } from 'material-ui/styles';
-import { Paper } from 'material-ui';
+import { Paper, Grid } from 'material-ui';
+import { search } from '../utils/BooksAPI';
+import { searchTerms } from '../SearchTerms';
+import Book from './Book'
 
 const styles = {
   searchContainer: {
@@ -23,21 +26,49 @@ const styles = {
 class Search extends Component {
 
   state = {
-    query: ''
+    searchResults: [],
   }
+
+  onSearch = (query: string) => {
+    if(searchTerms.includes(query)) {
+      search(query).then(searchResults => {
+        this.setState(
+        { searchResults }
+      )
+      })
+    }
+  }
+
   render (){
-    const {query} = this.state
-    const { classes } = this.props
+    const {searchResults} = this.state
+    const { updateBook, classes} = this.props
+    console.log(searchResults)
     return(
       <div>
-      <Paper className={classes.searchContainer}>
-        <input
-          className={classes.searchBooks}
-         type='text'
-         placeholder='Search Books'
-          value={query}
-        />
-     </Paper>
+        <Paper className={classes.searchContainer}>
+          <input
+            className={classes.searchBooks}
+            type='text'
+            placeholder='Search Books'
+            onChange={(event) => this.onSearch(event.target.value)}
+          />
+       </Paper>
+       <Grid 
+        container
+        justify= 'center'
+        spacing={40}
+        >
+            {searchResults.map((book) => (
+              <Grid item>
+              <Book
+                book = {book}
+                key = {book.id}
+                updateBook = {updateBook}
+                className={classes.book}
+              />
+              </Grid>
+            ))}
+        </Grid>
      </div>
     )
   }

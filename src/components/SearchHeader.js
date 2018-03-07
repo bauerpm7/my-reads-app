@@ -26,10 +26,10 @@ function SearchHeader(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar position="static" className={classes.appBar}>
         <Toolbar>
           <Typography
-          variant='Title'
+          variant='title'
           className={classes.flex}>
             MyReads - Search
           </Typography>

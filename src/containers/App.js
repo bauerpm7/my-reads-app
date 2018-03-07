@@ -6,6 +6,8 @@ import Library from "../components/Library"
 import LibraryHeader from "../components/LibraryHeader"
 import Home from "../components/Home"
 import HomeHeader from "../components/HomeHeader"
+import SearchHeader from "../components/SearchHeader"
+import Search from "../components/Search"
 
 class App extends Component {
   state = {
@@ -59,7 +61,12 @@ class App extends Component {
               updateBook={this.updateBook.bind(this)}/>
           </div>
         )} />
-
+        <Route path='/search' render={() =>(
+          <div>
+            <SearchHeader/>
+            <Search/>
+          </div>
+          )}/>
       </div>
     );
   }

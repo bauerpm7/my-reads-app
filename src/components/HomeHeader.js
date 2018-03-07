@@ -41,7 +41,9 @@ function HomeHeader(props) {
           <Link to='/library' className={classes.link}>
             <Icon className={classes.icon}>library_books</Icon>
           </Link>
-          <Icon className={classes.icon}>search</Icon>
+          <Link to='/search' className={classes.link}>
+            <Icon className={classes.icon}>search</Icon>
+          </Link>
         </Toolbar>
       </AppBar>
     </div>

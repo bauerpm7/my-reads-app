@@ -22,7 +22,7 @@ const styles = {
   },
 };
 
-function LibraryHeader(props) {
+function SearchHeader(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
@@ -31,13 +31,13 @@ function LibraryHeader(props) {
           <Typography
           variant='Title'
           className={classes.flex}>
-            MyReads - Library
+            MyReads - Search
           </Typography>
           <Link to='/' className={classes.link}>
             <Icon className={classes.icon}>home</Icon>
           </Link>
-          <Link to='/search' className={classes.link}>
-            <Icon className={classes.icon}>search</Icon>
+          <Link to='/library' className={classes.link}>
+            <Icon className={classes.icon}>library_books</Icon>
           </Link>
         </Toolbar>
       </AppBar>
@@ -45,8 +45,8 @@ function LibraryHeader(props) {
   );
 }
 
-LibraryHeader.propTypes = {
+SearchHeader.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(LibraryHeader);
+export default withStyles(styles)(SearchHeader);

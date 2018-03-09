@@ -54,7 +54,7 @@ class Book extends Component {
               {title}
             </Typography>
             <Typography component="p">
-              by: {authors.join(', ')}
+              by: {authors}
             </Typography>
           </CardContent>
           <CardActions>

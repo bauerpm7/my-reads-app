@@ -7,11 +7,12 @@ import LibraryHeader from "../components/LibraryHeader"
 import Home from "../components/Home"
 import HomeHeader from "../components/HomeHeader"
 import SearchHeader from "../components/SearchHeader"
-import Search from "../components/Search"
+import SearchBar from "../components/SearchBar"
 
 class App extends Component {
   state = {
-    books:[]
+    books:[], 
+    searchResults: [],
   }
 
 
@@ -64,8 +65,9 @@ class App extends Component {
         <Route path='/search' render={() =>(
           <div>
             <SearchHeader/>
-            <Search
-            updateBook={this.updateBook.bind(this)}/>
+            <SearchBar
+            updateBook={this.updateBook.bind(this)}
+            />
           </div>
           )}/>
       </div>

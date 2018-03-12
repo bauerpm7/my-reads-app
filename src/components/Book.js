@@ -20,6 +20,7 @@ const styles = theme => ({
     marginRight: 'auto',
     paddingTop:5,
     height:210,
+    width:180
   },
   title: {
     fontSize: 18,
@@ -62,7 +63,7 @@ class Book extends Component {
               value={shelf}
               onChange={(event) => this.shelfSelectChange(event.target.value)}
             >
-              <option value="message" disabled>Move to...</option>
+              <option value="message">Move to...</option>
               <option value="currentlyReading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>
               <option value="read">Read</option>
@@ -77,7 +78,9 @@ class Book extends Component {
 
 Book.propTypes = {
   classes: PropTypes.object.isRequired,
-
+  book: PropTypes.object,
+  updateBook: PropTypes.func
 };
+
 
 export default withStyles(styles)(Book);

@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import { AppBar, Toolbar, Typography, Grid, Icon } from 'material-ui';
+import { AppBar, Toolbar, Typography, Icon } from 'material-ui';
 import { Link } from 'react-router-dom'
 
 

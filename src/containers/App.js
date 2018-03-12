@@ -12,7 +12,6 @@ import SearchBar from "../components/SearchBar"
 class App extends Component {
   state = {
     books:[], 
-    searchResults: [],
   }
 
 
@@ -45,6 +44,10 @@ class App extends Component {
     );
   }
 
+  getBookFromShelf(books, bookshelf) {
+        return books.filter((book) => book.shelf === bookshelf);
+    }
+
   render() {
     console.log(this.state.books)
     return (
@@ -59,14 +62,17 @@ class App extends Component {
           <div>
             <LibraryHeader/>
             <Library books = {this.state.books}
-              updateBook={this.updateBook.bind(this)}/>
+              updateBook={this.updateBook.bind(this)}
+              getBookFromShelf={this.getBookFromShelf.bind(this)}/>
           </div>
         )} />
         <Route path='/search' render={() =>(
           <div>
             <SearchHeader/>
             <SearchBar
-            updateBook={this.updateBook.bind(this)}
+              books = {this.state.searchResults}
+              updateBook={this.updateBook.bind(this)}
+              getBookFromShelf={this.getBookFromShelf.bind(this)}
             />
           </div>
           )}/>

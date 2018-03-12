@@ -35,14 +35,14 @@ class Book extends Component {
   
 
   shelfSelectChange(selectValue) {
-        let {book, updateBook} = this.props;
-        book.shelf = selectValue;
-        updateBook(book);
+        let {libraryBook, updateBook} = this.props;
+        libraryBook.shelf = selectValue;
+        updateBook(libraryBook);
       }
 
   render() {
   
-    const { classes, book:{title, authors, imageLinks, shelf}} = this.props
+    const { classes, libraryBook:{title, authors, imageLinks, shelf}} = this.props
     
     return (
       <div>
@@ -78,7 +78,7 @@ class Book extends Component {
 
 Book.propTypes = {
   classes: PropTypes.object.isRequired,
-  book: PropTypes.object,
+  libraryBook: PropTypes.object,
   updateBook: PropTypes.func
 };
 

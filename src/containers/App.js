@@ -11,27 +11,27 @@ import SearchBar from "../components/SearchBar"
 
 class App extends Component {
   state = {
-    books:[], 
+    libraryBooks:[], 
   }
 
 
   componentDidMount() {
-    BooksAPI.getAll().then((books) => {
-      this.setState({ books });
+    BooksAPI.getAll().then((libraryBooks) => {
+      this.setState({ libraryBooks });
     });
   }
 
 
   updateBook(bookToUpdate) {
-    const { books } = this.state;
+    const { libraryBooks } = this.state;
     let haveBook = false;
 
-    let updatedBooks = books.map((book) => {
-      if (book.id === bookToUpdate.id) {
+    let updatedBooks = libraryBooks.map((libraryBook) => {
+      if (libraryBook.id === bookToUpdate.id) {
         haveBook = true;
         return bookToUpdate;
       } else {
-        return book;
+        return libraryBook;
       }
     });
 
@@ -40,13 +40,9 @@ class App extends Component {
     }
 
     BooksAPI.update(bookToUpdate, bookToUpdate.shelf).then(
-      this.setState({ books: updatedBooks })
+      this.setState({ libraryBooks: updatedBooks })
     );
   }
-
-  getBookFromShelf(books, bookshelf) {
-        return books.filter((book) => book.shelf === bookshelf);
-    }
 
   render() {
     console.log(this.state.books)
@@ -61,18 +57,16 @@ class App extends Component {
         <Route path='/library' render={() => (
           <div>
             <LibraryHeader/>
-            <Library books = {this.state.books}
+            <Library libraryBooks = {this.state.libraryBooks}
               updateBook={this.updateBook.bind(this)}
-              getBookFromShelf={this.getBookFromShelf.bind(this)}/>
+            />
           </div>
         )} />
         <Route path='/search' render={() =>(
           <div>
             <SearchHeader/>
             <SearchBar
-              books = {this.state.searchResults}
               updateBook={this.updateBook.bind(this)}
-              getBookFromShelf={this.getBookFromShelf.bind(this)}
             />
           </div>
           )}/>

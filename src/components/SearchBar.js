@@ -7,7 +7,6 @@ import PropTypes from 'prop-types'
 import BookShelf from './BookShelf'
 import { Button, Icon} from 'material-ui'
 import { withStyles } from 'material-ui/styles'
-import jss from 'jss'
 
 
 const styles = theme => ({
@@ -85,7 +84,7 @@ class SearchBar extends Component {
             return;
         };
     if(searchTerms.includes(searchQuery)) {
-      search(searchQuery, 8).then(searchResults => {
+      search(searchQuery, 10).then(searchResults => {
         this.setState(
         { searchResults }
         )

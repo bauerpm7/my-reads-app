@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import { AppBar, Toolbar, Typography, Grid, Icon } from 'material-ui';
+import { AppBar, Toolbar, Typography, Icon } from 'material-ui';
 import { Link } from 'react-router-dom'
 
 
@@ -11,7 +11,8 @@ const styles = {
   },
   flex: {
     flex: 1,
-    fontSize:24
+    fontSize:24,
+    color: 'white'
   },
   icon: {
     paddingLeft: 10,
@@ -29,7 +30,7 @@ function LibraryHeader(props) {
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Typography
-          variant='Title'
+          variant='title'
           className={classes.flex}>
             MyReads - Library
           </Typography>

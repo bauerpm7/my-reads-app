@@ -25,28 +25,28 @@ const styles = theme => ({
 
 class Library extends Component {
   
-  getBookFromShelf(libraryBooks, bookshelf) {
-        return libraryBooks.filter((libraryBook) => libraryBook.shelf === bookshelf);
+  getBookFromShelf(books, bookshelf) {
+        return books.filter((book) => book.shelf === bookshelf);
     }
 
   render() {
-    const { libraryBooks, updateBook, classes } = this.props
+    const { books, updateBook, classes } = this.props
 
     
     return(
       <div className= {classes.library}>
         <BookShelf
-          libraryBooks ={this.getBookFromShelf (libraryBooks, "currentlyReading")}
+          books ={this.getBookFromShelf (books, "currentlyReading")}
           updateBook = {updateBook}
           bookShelfName = "Currently Reading"
         />
         <BookShelf
-          libraryBooks ={this.getBookFromShelf (libraryBooks, "wantToRead")}
+          books ={this.getBookFromShelf (books, "wantToRead")}
           updateBook = {updateBook}
           bookShelfName = "Want To Read"
         />
         <BookShelf
-          libraryBooks ={this.getBookFromShelf (libraryBooks, "read")}
+          books ={this.getBookFromShelf (books, "read")}
           updateBook = {updateBook}
           bookShelfName = "Read"
         />

@@ -35,14 +35,14 @@ class Book extends Component {
   
 
   shelfSelectChange(selectValue) {
-        let {libraryBook, updateBook} = this.props;
-        libraryBook.shelf = selectValue;
-        updateBook(libraryBook);
+        let {book, updateBook} = this.props;
+        book.shelf = selectValue;
+        updateBook(book);
       }
 
   render() {
   
-    const { classes, libraryBook:{title, authors, imageLinks, shelf}} = this.props
+    const { classes, book:{title, authors, imageLinks, shelf}} = this.props
     
     return (
       <div>
@@ -63,11 +63,11 @@ class Book extends Component {
               value={shelf}
               onChange={(event) => this.shelfSelectChange(event.target.value)}
             >
-              <option value="message">Move to...</option>
+              <option value="none">Select Shelf...</option>
               <option value="currentlyReading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>
               <option value="read">Read</option>
-              <option value="none">None</option>
+              <option value="none">Remove from Shelf</option>
             </select>
           </CardActions>
         </Card>
@@ -78,7 +78,7 @@ class Book extends Component {
 
 Book.propTypes = {
   classes: PropTypes.object.isRequired,
-  libraryBook: PropTypes.object,
+  book: PropTypes.object,
   updateBook: PropTypes.func
 };
 

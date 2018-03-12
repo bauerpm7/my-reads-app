@@ -11,27 +11,27 @@ import SearchBar from "../components/SearchBar"
 
 class App extends Component {
   state = {
-    libraryBooks:[], 
+    books:[], 
   }
 
 
   componentDidMount() {
-    BooksAPI.getAll().then((libraryBooks) => {
-      this.setState({ libraryBooks });
+    BooksAPI.getAll().then((books) => {
+      this.setState({ books });
     });
   }
 
 
   updateBook(bookToUpdate) {
-    const { libraryBooks } = this.state;
+    const { books } = this.state;
     let haveBook = false;
 
-    let updatedBooks = libraryBooks.map((libraryBook) => {
-      if (libraryBook.id === bookToUpdate.id) {
+    let updatedBooks = books.map((book) => {
+      if (book.id === bookToUpdate.id) {
         haveBook = true;
         return bookToUpdate;
       } else {
-        return libraryBook;
+        return book;
       }
     });
 
@@ -40,12 +40,13 @@ class App extends Component {
     }
 
     BooksAPI.update(bookToUpdate, bookToUpdate.shelf).then(
-      this.setState({ libraryBooks: updatedBooks })
+      this.setState({ books: updatedBooks })
     );
   }
 
   render() {
-    console.log(this.state.books)
+    const {books} = this.state
+    console.log(books)
     return (
       <div className="App">
         <Route exact path='/' render={() => (
@@ -57,7 +58,7 @@ class App extends Component {
         <Route path='/library' render={() => (
           <div>
             <LibraryHeader/>
-            <Library libraryBooks = {this.state.libraryBooks}
+            <Library books = {books}
               updateBook={this.updateBook.bind(this)}
             />
           </div>
@@ -66,6 +67,7 @@ class App extends Component {
           <div>
             <SearchHeader/>
             <SearchBar
+              libraryBooks = {books}
               updateBook={this.updateBook.bind(this)}
             />
           </div>

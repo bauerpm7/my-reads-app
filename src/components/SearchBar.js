@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
 import BookShelf from './BookShelf'
 import { Button, Icon} from 'material-ui'
 import { withStyles } from 'material-ui/styles'
+import jss from 'jss'
 
 
 const styles = theme => ({
@@ -78,19 +79,32 @@ class SearchBar extends Component {
     });
   };
   onSearch = (query: string) => {
+
+    const {libraryBooks} = this.props;
     let searchQuery= query.trim();
+
     if (searchQuery === '') {
             this.setState({ searchResults: [] });
             return;
         };
+
     if(searchTerms.includes(searchQuery)) {
       search(searchQuery, 10).then(searchResults => {
-        this.setState(
-        { searchResults }
-        )
+      if (searchResults && searchResults.length) {
+        let normalizedBooks = searchResults.map((book) => {
+          let bookInLibrary;
+          libraryBooks.map((libraryBook) => {
+            if(libraryBook.id===book.id) {
+              bookInLibrary = libraryBook;
+            }
+          })
+          book.shelf = bookInLibrary ? bookInLibrary.shelf : 'none'
+          return book
+        });
+        this.setState({ searchResults: normalizedBooks });
+        }
       })
     }
-    this.state.searchResults.map((book) => book.shelf = 'none')
   }
 
   getBookFromShelf(books, bookshelf) {

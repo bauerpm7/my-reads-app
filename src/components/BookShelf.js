@@ -19,7 +19,7 @@ const styles = theme => ({
 class BookShelf extends Component {
 
   render () {
-    const { libraryBooks, bookShelfName, updateBook, classes} = this.props
+    const { books, bookShelfName, updateBook, classes} = this.props
     return (
       <div>
         <Typography 
@@ -33,12 +33,11 @@ class BookShelf extends Component {
         justify= 'center'
         spacing={40}
         >
-            {libraryBooks.map((libraryBook) => (
+            {books.map((book) => (
               <Grid item
-              key = {libraryBook.id}>
+              key = {book.id}>
               <Book
-                libraryBook = {libraryBook}
-                key = {libraryBook.id}
+                book = {book}
                 updateBook = {updateBook}
                 className={classes.book}
               />

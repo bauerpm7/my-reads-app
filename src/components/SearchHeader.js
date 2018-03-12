@@ -11,7 +11,8 @@ const styles = {
   },
   flex: {
     flex: 1,
-    fontSize:24
+    fontSize:24,
+    color:'white'
   },
   icon: {
     paddingLeft: 10,

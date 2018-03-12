@@ -1,4 +1,6 @@
-/* Styles for AutoSuggest*/
+/* Styles for AutoSuggest
+ *Couldn't get other methods (JSS) to work for styling Autosuggest
+ */
 .react-autosuggest__container {
   position: relative;
 }
@@ -12,6 +14,7 @@
   font-size: 16px;
   border: 1px solid #aaa;
   border-radius: 4px;
+  margin-top: 30px;
 }
 
 .react-autosuggest__input--focused {

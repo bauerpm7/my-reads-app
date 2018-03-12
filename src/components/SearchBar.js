@@ -7,15 +7,19 @@ import PropTypes from 'prop-types'
 import BookShelf from './BookShelf'
 import { Button, Icon} from 'material-ui'
 import { withStyles } from 'material-ui/styles'
-import jss from 'jss'
+
 
 
 const styles = theme => ({
   searchContainer: {
     display: 'flex',
     justifyContent: 'center',
-    paddingTop: 50,
-    width: '100%'
+    paddingTop: 120,
+    width: '100%',
+    flexWrap: 'wrap'
+  },
+  button: {
+    marginTop:30
   }
 })
 
@@ -79,17 +83,18 @@ class SearchBar extends Component {
     });
   };
   onSearch = (query: string) => {
-
     const {libraryBooks} = this.props;
     let searchQuery= query.trim();
-
+    //if the search string is empty, empty the search results
     if (searchQuery === '') {
             this.setState({ searchResults: [] });
             return;
         };
-
+    //make sure the search query is in the list of search terms
     if(searchTerms.includes(searchQuery)) {
+      //get results from the API
       search(searchQuery, 10).then(searchResults => {
+      //only add books to the search results if they aren't already in the library
       if (searchResults && searchResults.length) {
         let normalizedBooks = searchResults.map((book) => {
           let bookInLibrary;
@@ -98,15 +103,17 @@ class SearchBar extends Component {
               bookInLibrary = libraryBook;
             }
           })
+          //set shelf property of books in search results to 'none'
           book.shelf = bookInLibrary ? bookInLibrary.shelf : 'none'
           return book
         });
+        //add search results to the searchResults array.
         this.setState({ searchResults: normalizedBooks });
         }
       })
     }
   }
-
+  //sort books by shelf
   getBookFromShelf(books, bookshelf) {
         return books.filter((book) => book.shelf === bookshelf);
     }
@@ -135,6 +142,7 @@ class SearchBar extends Component {
             inputProps={inputProps}
           />
           <Button
+            className={classes.button}
             variant='raised' 
             color='secondary'
             onClick={(event) => (this.onSearch(value))}

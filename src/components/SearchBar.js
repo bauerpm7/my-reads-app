@@ -1,14 +1,11 @@
-
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import Autosuggest from 'react-autosuggest';
 import { searchTerms } from '../SearchTerms';
 import { search } from '../utils/BooksAPI';
-import PropTypes from 'prop-types'
-import BookShelf from './BookShelf'
-import { Button, Icon} from 'material-ui'
-import { withStyles } from 'material-ui/styles'
-
-
+import PropTypes from 'prop-types';
+import BookShelf from './BookShelf';
+import { Button, Icon } from 'material-ui';
+import { withStyles } from 'material-ui/styles';
 
 const styles = theme => ({
   searchContainer: {
@@ -19,19 +16,20 @@ const styles = theme => ({
     flexWrap: 'wrap'
   },
   button: {
-    marginTop:30
+    marginTop: 30
   }
-})
-
+});
 
 // Teach Autosuggest how to calculate suggestions for any given input value.
 const getSuggestions = value => {
   const inputValue = value.trim().toLowerCase();
   const inputLength = inputValue.length;
 
-  return inputLength === 0 ? [] : searchTerms.filter(term =>
-    term.toLowerCase().slice(0, inputLength) === inputValue
-  );
+  return inputLength === 0
+    ? []
+    : searchTerms.filter(
+        term => term.toLowerCase().slice(0, inputLength) === inputValue
+      );
 };
 
 // When suggestion is clicked, Autosuggest needs to populate the input
@@ -40,11 +38,7 @@ const getSuggestions = value => {
 const getSuggestionValue = suggestion => suggestion;
 
 // Use your imagination to render suggestions.
-const renderSuggestion = suggestion => (
-  <div>
-    {suggestion}
-  </div>
-);
+const renderSuggestion = suggestion => <div>{suggestion}</div>;
 
 class SearchBar extends Component {
   constructor() {
@@ -83,51 +77,52 @@ class SearchBar extends Component {
     });
   };
   onSearch = (query: string) => {
-    const {libraryBooks} = this.props;
-    let searchQuery= query.trim();
+    const { libraryBooks } = this.props;
+    let searchQuery = query.trim();
     //if the search string is empty, empty the search results
     if (searchQuery === '') {
-            this.setState({ searchResults: [] });
-            return;
-        };
+      this.setState({ searchResults: [] });
+      return;
+    }
     //make sure the search query is in the list of search terms
-    if(searchTerms.includes(searchQuery)) {
+    if (searchTerms.includes(searchQuery)) {
       //get results from the API
       search(searchQuery, 10).then(searchResults => {
-      //only add books to the search results if they aren't already in the library
-      if (searchResults && searchResults.length) {
-        let normalizedBooks = searchResults.map((book) => {
-          let bookInLibrary;
-          libraryBooks.map((libraryBook) => {
-            if(libraryBook.id===book.id) {
-              bookInLibrary = libraryBook;
-            }
-          })
-          //set shelf property of books in search results to 'none'
-          book.shelf = bookInLibrary ? bookInLibrary.shelf : 'none'
-          return book
-        });
-        //add search results to the searchResults array.
-        this.setState({ searchResults: normalizedBooks });
+        //only add books to the search results if they aren't already in the library
+        if (searchResults && searchResults.length) {
+          let normalizedBooks = searchResults.map(book => {
+            let bookInLibrary;
+            libraryBooks.map(libraryBook => {
+              if (libraryBook.id === book.id) {
+                bookInLibrary = libraryBook;
+              }
+              return null;
+            });
+            //set shelf property of books in search results to 'none'
+            book.shelf = bookInLibrary ? bookInLibrary.shelf : 'none';
+            return book;
+          });
+          //add search results to the searchResults array.
+          this.setState({ searchResults: normalizedBooks });
         }
-      })
+      });
     }
-  }
+  };
   //sort books by shelf
   getBookFromShelf(books, bookshelf) {
-        return books.filter((book) => book.shelf === bookshelf);
-    }
+    return books.filter(book => book.shelf === bookshelf);
+  }
 
   render() {
     const { value, searchResults, suggestions } = this.state;
-    const { updateBook, classes } = this.props
+    const { updateBook, classes } = this.props;
     // Autosuggest will pass through all these props to the input.
     const inputProps = {
       placeholder: 'Search by title or author',
       value,
       onChange: this.onChange
     };
-    console.log(searchResults)
+    console.log(searchResults);
 
     // Finally, render it!
     return (
@@ -143,23 +138,25 @@ class SearchBar extends Component {
           />
           <Button
             className={classes.button}
-            variant='raised' 
-            color='secondary'
-            onClick={(event) => (this.onSearch(value))}
-          ><Icon>search</Icon> Search</Button> 
+            variant="raised"
+            color="secondary"
+            onClick={event => this.onSearch(value)}
+          >
+            <Icon>search</Icon> Search
+          </Button>
         </div>
         <BookShelf
-          books ={this.getBookFromShelf(searchResults, 'none')}
-          updateBook = {updateBook}
-          bookShelfName = "Search Results"
+          books={this.getBookFromShelf(searchResults, 'none')}
+          updateBook={updateBook}
+          bookShelfName="Search Results"
         />
       </div>
     );
   }
 }
-SearchBar.propTypes= {
+SearchBar.propTypes = {
   updateBook: PropTypes.func,
   classes: PropTypes.object.isRequired
-}
+};
 
-export default withStyles (styles)(SearchBar)
+export default withStyles(styles)(SearchBar);

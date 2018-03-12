@@ -2,25 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import { AppBar, Toolbar, Typography, Icon } from 'material-ui';
-import { Link } from 'react-router-dom'
-
+import { Link } from 'react-router-dom';
 
 const styles = {
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   flex: {
     flex: 1,
-    fontSize:24,
-    color:'white'
+    fontSize: 24,
+    color: 'white'
   },
   icon: {
     paddingLeft: 10,
     paddingRight: 10
   },
-  link:{
-    color:'inherit'
-  },
+  link: {
+    color: 'inherit'
+  }
 };
 
 function SearchHeader(props) {
@@ -29,15 +28,13 @@ function SearchHeader(props) {
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <Typography
-          variant='title'
-          className={classes.flex}>
+          <Typography variant="title" className={classes.flex}>
             MyReads - Search
           </Typography>
-          <Link to='/' className={classes.link}>
+          <Link to="/" className={classes.link}>
             <Icon className={classes.icon}>home</Icon>
           </Link>
-          <Link to='/library' className={classes.link}>
+          <Link to="/library" className={classes.link}>
             <Icon className={classes.icon}>library_books</Icon>
           </Link>
         </Toolbar>
@@ -47,7 +44,7 @@ function SearchHeader(props) {
 }
 
 SearchHeader.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(SearchHeader);

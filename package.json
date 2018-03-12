@@ -5,10 +5,13 @@
   "dependencies": {
     "color": "^3.0.0",
     "downshift": "^1.29.1",
+    "husky": "^0.14.3",
     "jss": "^9.8.0",
     "jss-preset-default": "^4.3.0",
+    "lint-staged": "^7.0.0",
     "material-ui": "^1.0.0-beta.35",
     "material-ui-icons": "^1.0.0-beta.36",
+    "prettier": "^1.11.1",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-autosuggest": "^9.3.4",
@@ -17,7 +20,14 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "^1.1.1"
   },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
+ },
   "scripts": {
+    "precommit": "lint-staged",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

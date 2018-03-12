@@ -5,24 +5,23 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import { Icon } from 'material-ui';
-import { Link } from 'react-router-dom'
-
+import { Link } from 'react-router-dom';
 
 const styles = {
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   flex: {
-    flex: 1,
+    flex: 1
   },
   icon: {
     paddingLeft: 10,
     paddingRight: 10
   },
-  link:{
-    color:'inherit'
+  link: {
+    color: 'inherit'
   },
-  appBar: { 
+  appBar: {
     boxShadow: 'none'
   }
 };
@@ -33,12 +32,11 @@ function HomeHeader(props) {
     <div className={classes.root}>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
-          <Typography className={classes.flex}>
-          </Typography>
-          <Link to='/library' className={classes.link}>
+          <Typography className={classes.flex} />
+          <Link to="/library" className={classes.link}>
             <Icon className={classes.icon}>library_books</Icon>
           </Link>
-          <Link to='/search' className={classes.link}>
+          <Link to="/search" className={classes.link}>
             <Icon className={classes.icon}>search</Icon>
           </Link>
         </Toolbar>
@@ -48,7 +46,7 @@ function HomeHeader(props) {
 }
 
 HomeHeader.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(HomeHeader);

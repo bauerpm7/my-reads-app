@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import BookShelf from './BookShelf'
-import { withStyles } from 'material-ui/styles'
-import { Icon } from 'material-ui'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import BookShelf from './BookShelf';
+import { withStyles } from 'material-ui/styles';
+import { Icon } from 'material-ui';
+import { Link } from 'react-router-dom';
 
 const styles = theme => ({
   library: {
     marginTop: 120,
-    paddingBottom:120
+    paddingBottom: 120
   },
   addBooks: {
     position: 'fixed',
@@ -17,48 +17,45 @@ const styles = theme => ({
     fontSize: 60,
     [theme.breakpoints.down('xs')]: {
       fontSize: 48,
-      right:25,
+      right: 25,
       bottom: 25
     }
   }
-})
+});
 
 class Library extends Component {
-  
   getBookFromShelf(books, bookshelf) {
-        return books.filter((book) => book.shelf === bookshelf);
-    }
+    return books.filter(book => book.shelf === bookshelf);
+  }
 
   render() {
-    const { books, updateBook, classes } = this.props
+    const { books, updateBook, classes } = this.props;
 
-    
-    return(
-      <div className= {classes.library}>
+    return (
+      <div className={classes.library}>
         <BookShelf
-          books ={this.getBookFromShelf (books, "currentlyReading")}
-          updateBook = {updateBook}
-          bookShelfName = "Currently Reading"
+          books={this.getBookFromShelf(books, 'currentlyReading')}
+          updateBook={updateBook}
+          bookShelfName="Currently Reading"
         />
         <BookShelf
-          books ={this.getBookFromShelf (books, "wantToRead")}
-          updateBook = {updateBook}
-          bookShelfName = "Want To Read"
+          books={this.getBookFromShelf(books, 'wantToRead')}
+          updateBook={updateBook}
+          bookShelfName="Want To Read"
         />
         <BookShelf
-          books ={this.getBookFromShelf (books, "read")}
-          updateBook = {updateBook}
-          bookShelfName = "Read"
+          books={this.getBookFromShelf(books, 'read')}
+          updateBook={updateBook}
+          bookShelfName="Read"
         />
-        <Link 
-        to = "/search">
-          <Icon className={classes.addBooks}
-          color='primary'
-          >add_circle</Icon>
+        <Link to="/search">
+          <Icon className={classes.addBooks} color="primary">
+            add_circle
+          </Icon>
         </Link>
       </div>
-      )
-   }
+    );
+  }
 }
 
 Library.propTypes = {

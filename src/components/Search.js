@@ -5,74 +5,65 @@ import { withStyles } from 'material-ui/styles';
 import { Paper, Grid } from 'material-ui';
 import { search } from '../utils/BooksAPI';
 import { searchTerms } from '../SearchTerms';
-import Book from './Book'
+import Book from './Book';
 
 const styles = {
   searchContainer: {
     position: 'fixed',
     top: 64,
-    width: "100%",
-    padding:20
-
+    width: '100%',
+    padding: 20
   },
   searchBooks: {
-    width:"100%",
-    fontSize: "1.5em",
+    width: '100%',
+    fontSize: '1.5em',
     border: 'none'
   }
-  
-}
+};
 
 class Search extends Component {
-
   state = {
-    searchResults: [],
-  }
+    searchResults: []
+  };
 
   onSearch = (query: string) => {
-    if(searchTerms.includes(query)) {
+    if (searchTerms.includes(query)) {
       search(query).then(searchResults => {
-        this.setState(
-        { searchResults }
-      )
-      })
+        this.setState({ searchResults });
+      });
     }
-  }
+  };
 
-  render (){
-    const {searchResults} = this.state
-    const { updateBook, classes} = this.props
-    console.log(searchResults)
-    return(
+  render() {
+    const { searchResults } = this.state;
+    const { updateBook, classes } = this.props;
+    console.log(searchResults);
+    return (
       <div>
         <Paper className={classes.searchContainer}>
           <input
             className={classes.searchBooks}
-            type='text'
-            placeholder='Search Books'
-            onChange={(event) => this.onSearch(event.target.value)}
+            type="text"
+            placeholder="Search Books"
+            onChange={event => this.onSearch(event.target.value)}
           />
-       </Paper>
-       <Grid 
-        container
-        justify= 'center'
-        spacing={40}
-        >
-            {searchResults.map((book) => (
-              <Grid item>
+        </Paper>
+        <Grid container justify="center" spacing={40}>
+          {searchResults.map(book => (
+            <Grid item>
               <Book
-                book = {book}
-                key = {book.id}
-                updateBook = {updateBook}
+                book={book}
+                key={book.id}
+                updateBook={updateBook}
                 className={classes.book}
               />
-              </Grid>
-            ))}
+            </Grid>
+          ))}
         </Grid>
-     </div>
-    )
+      </div>
+    );
   }
-};
+}
 
 Search.propTypes = {
   classes: PropTypes.object.isRequired

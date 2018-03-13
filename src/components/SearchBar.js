@@ -17,6 +17,9 @@ const styles = theme => ({
   },
   button: {
     marginTop: 30
+  },
+  bookshelfContainer: {
+    paddingBottom: 120
   }
 });
 
@@ -145,11 +148,14 @@ class SearchBar extends Component {
             <Icon>search</Icon> Search
           </Button>
         </div>
-        <BookShelf
-          books={this.getBookFromShelf(searchResults, 'none')}
-          updateBook={updateBook}
-          bookShelfName="Search Results"
-        />
+        <div className={classes.bookshelfContainer}>
+          <BookShelf
+            books={this.getBookFromShelf(searchResults, 'none')}
+            updateBook={updateBook}
+            bookShelfName="Search Results"
+            className={classes.bookshelf}
+          />
+        </div>
       </Fragment>
     );
   }

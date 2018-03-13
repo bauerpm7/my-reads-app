@@ -3,6 +3,7 @@ import { withStyles } from 'material-ui/styles';
 import { Typography, Icon, Button } from 'material-ui';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import Footer from './Footer';
 
 const styles = theme => ({
   title: {
@@ -132,13 +133,15 @@ class Home extends Component {
               >
                 create-react-app
               </a>{' '}
-              and react-router. Components are styled using CSS in JS (JSS) and{' '}
+              and react-router. Components are styled using CSS style sheets,
+              CSS in JS (JSS) and{' '}
               <a className={classes.links} href="https://material-ui-next.com/">
                 Material UI
               </a>.
             </p>
           </Typography>
         </div>
+        <Footer />
       </Fragment>
     );
   }

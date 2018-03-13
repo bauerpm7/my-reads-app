@@ -35,14 +35,15 @@ function HomeHeader(props) {
           <a
             href="https://github.com/bauerpm7/my-reads-app"
             className={classes.link}
+            aria-label="my github repo"
           >
             <Icon>code</Icon>
           </a>
           <Typography className={classes.flex} />
-          <Link to="/library" className={classes.link}>
+          <Link to="/library" className={classes.link} aria-label="library">
             <Icon className={classes.icon}>library_books</Icon>
           </Link>
-          <Link to="/search" className={classes.link}>
+          <Link to="/search" className={classes.link} aria-label="search">
             <Icon className={classes.icon}>search</Icon>
           </Link>
         </Toolbar>

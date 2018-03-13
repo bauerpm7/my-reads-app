@@ -8,6 +8,7 @@ import Home from '../components/Home';
 import HomeHeader from '../components/HomeHeader';
 import SearchHeader from '../components/SearchHeader';
 import SearchBar from '../components/SearchBar';
+import Footer from '../components/Footer';
 
 class App extends Component {
   state = {
@@ -78,6 +79,7 @@ class App extends Component {
             </div>
           )}
         />
+        <Footer />
       </div>
     );
   }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Fragment, Component } from 'react';
 import Autosuggest from 'react-autosuggest';
 import { searchTerms } from '../SearchTerms';
 import { search } from '../utils/BooksAPI';
@@ -126,7 +126,7 @@ class SearchBar extends Component {
 
     // Finally, render it!
     return (
-      <div>
+      <Fragment>
         <div className={classes.searchContainer}>
           <Autosuggest
             suggestions={suggestions}
@@ -150,7 +150,7 @@ class SearchBar extends Component {
           updateBook={updateBook}
           bookShelfName="Search Results"
         />
-      </div>
+      </Fragment>
     );
   }
 }

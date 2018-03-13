@@ -32,6 +32,12 @@ function HomeHeader(props) {
     <div className={classes.root}>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
+          <a
+            href="https://github.com/bauerpm7/my-reads-app"
+            className={classes.link}
+          >
+            <Icon>code</Icon>
+          </a>
           <Typography className={classes.flex} />
           <Link to="/library" className={classes.link}>
             <Icon className={classes.icon}>library_books</Icon>

@@ -37,7 +37,16 @@ class Book extends Component {
   }
 
   render() {
+    let author;
     const { classes, book: { title, authors, imageLinks, shelf } } = this.props;
+
+    //if there is no authors property then label the authors as anonymous
+    //otherwise list others separated by a comma
+    if (!authors) {
+      author = <Typography component="p">by: Anonymous</Typography>;
+    } else {
+      author = <Typography component="p">by: {authors.join(', ')}</Typography>;
+    }
 
     return (
       <div>
@@ -53,7 +62,7 @@ class Book extends Component {
             <Typography component="h3" className={classes.title}>
               {title}
             </Typography>
-            <Typography component="p">by: {authors}</Typography>
+            {author}
           </CardContent>
           <CardActions>
             <select
@@ -64,7 +73,7 @@ class Book extends Component {
               <option value="currentlyReading">Currently Reading</option>
               <option value="wantToRead">Want to Read</option>
               <option value="read">Read</option>
-              <option value="none">Remove from Shelf</option>
+              <option value="none">Remove from Library</option>
             </select>
           </CardActions>
         </Card>

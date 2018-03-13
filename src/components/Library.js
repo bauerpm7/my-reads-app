@@ -12,13 +12,13 @@ const styles = theme => ({
   },
   addBooks: {
     position: 'fixed',
-    bottom: 40,
+    bottom: 60,
     right: 40,
     fontSize: 60,
     [theme.breakpoints.down('xs')]: {
       fontSize: 48,
       right: 25,
-      bottom: 25
+      bottom: 50
     }
   }
 });
@@ -49,7 +49,11 @@ class Library extends Component {
           bookShelfName="Read"
         />
         <Link to="/search">
-          <Icon className={classes.addBooks} color="primary">
+          <Icon
+            className={classes.addBooks}
+            color="primary"
+            aria-label="search"
+          >
             add_circle
           </Icon>
         </Link>

@@ -72,7 +72,6 @@ class Home extends Component {
             component="h1"
             className={classes.title}
           >
-            {' '}
             Welcome to MyReads
           </Typography>
           <Icon className={classes.bookIcon}>book</Icon>
@@ -117,7 +116,7 @@ class Home extends Component {
               <a
                 className={classes.links}
                 href="https://www.udacity.com/course/front-end-web-developer-
-          nanodegree--nd001"
+                nanodegree--nd001"
               >
                 Udacity Front End Web Developer Nanodegree Program.
               </a>{' '}

@@ -39,7 +39,10 @@ class Book extends Component {
   render() {
     let author;
     let bookCover;
-    const { classes, book: { title, authors, imageLinks, shelf } } = this.props;
+    const {
+      classes,
+      book: { title, authors, imageLinks, shelf, previewLink }
+    } = this.props;
 
     //if there is no authors property then label the authors as anonymous
     //otherwise list others separated by a comma
@@ -65,7 +68,9 @@ class Book extends Component {
     return (
       <div>
         <Card className={classes.card}>
-          <CardContent className={classes.media}>{bookCover}</CardContent>
+          <CardContent className={classes.media}>
+            <a href={previewLink}>{bookCover}</a>
+          </CardContent>
           <CardContent className={classes.cardContent}>
             <Typography component="h3" className={classes.title}>
               {title}

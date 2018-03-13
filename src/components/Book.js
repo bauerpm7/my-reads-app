@@ -38,6 +38,7 @@ class Book extends Component {
 
   render() {
     let author;
+    let bookCover;
     const { classes, book: { title, authors, imageLinks, shelf } } = this.props;
 
     //if there is no authors property then label the authors as anonymous
@@ -47,17 +48,24 @@ class Book extends Component {
     } else {
       author = <Typography component="p">by: {authors.join(', ')}</Typography>;
     }
+    //if there is no imageLinks property then use a placeholder image
+    //otherwise use the imageLinks prop as source for image
+    if (!imageLinks) {
+      bookCover = <img src="http://via.placeholder.com/180x215" alt={title} />;
+    } else {
+      bookCover = (
+        <img
+          src={imageLinks.thumbnail}
+          alt={title}
+          className={classes.thumbnail}
+        />
+      );
+    }
 
     return (
       <div>
         <Card className={classes.card}>
-          <CardContent className={classes.media}>
-            <img
-              src={imageLinks.thumbnail}
-              alt={title}
-              className={classes.thumbnail}
-            />
-          </CardContent>
+          <CardContent className={classes.media}>{bookCover}</CardContent>
           <CardContent className={classes.cardContent}>
             <Typography component="h3" className={classes.title}>
               {title}

@@ -3,9 +3,7 @@ import './App.css';
 import * as BooksAPI from '../utils/BooksAPI';
 import { Route } from 'react-router-dom';
 import Library from '../components/Library/Library';
-import LibraryHeader from '../components/Library/LibraryHeader';
 import Home from '../components/Home/Home';
-import SearchHeader from '../components/Search/SearchHeader';
 import Search from '../components/Search/Search';
 import Footer from '../components/Footer';
 
@@ -60,7 +58,6 @@ class App extends Component {
           path="/library"
           render={() => (
             <div>
-              <LibraryHeader />
               <Library books={books} updateBook={this.updateBook.bind(this)} />
             </div>
           )}
@@ -69,7 +66,6 @@ class App extends Component {
           path="/search"
           render={() => (
             <div>
-              <SearchHeader />
               <Search
                 libraryBooks={books}
                 updateBook={this.updateBook.bind(this)}

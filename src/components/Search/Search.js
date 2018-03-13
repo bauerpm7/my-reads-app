@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import BookShelf from '../BookShelf';
 import { Button, Icon } from 'material-ui';
 import { withStyles } from 'material-ui/styles';
+import SearchHeader from './SearchHeader';
 
 const styles = theme => ({
   searchContainer: {
@@ -130,6 +131,7 @@ class Search extends Component {
     // Finally, render it!
     return (
       <Fragment>
+        <SearchHeader />
         <div className={classes.searchContainer}>
           <Autosuggest
             suggestions={suggestions}

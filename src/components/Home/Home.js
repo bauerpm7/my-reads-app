@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-
 import Description from './Description';
 import Welcome from './Welcome';
 import HomeHeader from './HomeHeader';

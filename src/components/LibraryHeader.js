@@ -32,10 +32,14 @@ function LibraryHeader(props) {
             MyReads - Library
           </Typography>
           <Link to="/" className={classes.link}>
-            <Icon className={classes.icon}>home</Icon>
+            <Icon className={classes.icon} aria-label="home">
+              home
+            </Icon>
           </Link>
           <Link to="/search" className={classes.link}>
-            <Icon className={classes.icon}>search</Icon>
+            <Icon className={classes.icon} aria-label="home">
+              search
+            </Icon>
           </Link>
         </Toolbar>
       </AppBar>

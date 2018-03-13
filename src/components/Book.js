@@ -81,6 +81,7 @@ class Book extends Component {
             <select
               value={shelf}
               onChange={event => this.shelfSelectChange(event.target.value)}
+              role="menu"
             >
               <option value="none">Select Shelf...</option>
               <option value="currentlyReading">Currently Reading</option>

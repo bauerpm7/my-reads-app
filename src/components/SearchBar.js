@@ -138,8 +138,10 @@ class SearchBar extends Component {
             getSuggestionValue={getSuggestionValue}
             renderSuggestion={renderSuggestion}
             inputProps={inputProps}
+            aria-label="search input"
           />
           <Button
+            aria-label="search"
             className={classes.button}
             variant="raised"
             color="secondary"

@@ -3,7 +3,6 @@ import { withStyles } from 'material-ui/styles';
 import { Typography, Icon, Button } from 'material-ui';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Footer from './Footer';
 
 const styles = theme => ({
   title: {
@@ -141,7 +140,6 @@ class Home extends Component {
             </p>
           </Typography>
         </div>
-        <Footer />
       </Fragment>
     );
   }

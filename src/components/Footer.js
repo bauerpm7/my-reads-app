@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import { Icon, Typography } from 'material-ui';
+import { Typography } from 'material-ui';
 import logo from '../containers/logo.svg';
 
 const styles = {

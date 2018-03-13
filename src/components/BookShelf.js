@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Book from './Book';
-import { Grid } from 'material-ui';
-import Typography from 'material-ui/Typography';
+import { Grid, Typography } from 'material-ui';
 import { withStyles } from 'material-ui/styles';
 
 const styles = theme => ({

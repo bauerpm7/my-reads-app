@@ -1,9 +1,9 @@
 import React, { Fragment, Component } from 'react';
 import Autosuggest from 'react-autosuggest';
-import { searchTerms } from '../SearchTerms';
-import { search } from '../utils/BooksAPI';
+import { searchTerms } from '../../SearchTerms';
+import { search } from '../../utils/BooksAPI';
 import PropTypes from 'prop-types';
-import BookShelf from './BookShelf';
+import BookShelf from '../BookShelf';
 import { Button, Icon } from 'material-ui';
 import { withStyles } from 'material-ui/styles';
 
@@ -43,7 +43,7 @@ const getSuggestionValue = suggestion => suggestion;
 // Use your imagination to render suggestions.
 const renderSuggestion = suggestion => <div>{suggestion}</div>;
 
-class SearchBar extends Component {
+class Search extends Component {
   constructor() {
     super();
 
@@ -162,9 +162,9 @@ class SearchBar extends Component {
     );
   }
 }
-SearchBar.propTypes = {
+Search.propTypes = {
   updateBook: PropTypes.func,
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(SearchBar);
+export default withStyles(styles)(Search);

@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import './App.css';
 import * as BooksAPI from '../utils/BooksAPI';
 import { Route } from 'react-router-dom';
-import Library from '../components/Library';
-import LibraryHeader from '../components/LibraryHeader';
-import Home from '../components/Home';
-import HomeHeader from '../components/HomeHeader';
-import SearchHeader from '../components/SearchHeader';
-import SearchBar from '../components/SearchBar';
+import Library from '../components/Library/Library';
+import LibraryHeader from '../components/Library/LibraryHeader';
+import Home from '../components/Home/Home';
+import SearchHeader from '../components/Search/SearchHeader';
+import Search from '../components/Search/Search';
 import Footer from '../components/Footer';
 
 class App extends Component {
@@ -53,7 +52,6 @@ class App extends Component {
           path="/"
           render={() => (
             <div>
-              <HomeHeader />
               <Home />
             </div>
           )}
@@ -72,7 +70,7 @@ class App extends Component {
           render={() => (
             <div>
               <SearchHeader />
-              <SearchBar
+              <Search
                 libraryBooks={books}
                 updateBook={this.updateBook.bind(this)}
               />

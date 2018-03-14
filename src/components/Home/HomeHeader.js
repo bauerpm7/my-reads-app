@@ -1,9 +1,17 @@
+//Vendor
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import { Icon, Typography, Toolbar, AppBar } from 'material-ui';
 import { Link } from 'react-router-dom';
 
+//PropTypes
+import PropTypes from 'prop-types';
+
+//Material-ui Components
+import { withStyles } from 'material-ui/styles';
+import { Icon, Typography, Toolbar, AppBar } from 'material-ui';
+
+/**
+ * JSS styles for Home Page Header
+ */
 const styles = {
   root: {
     flexGrow: 1
@@ -23,6 +31,9 @@ const styles = {
   }
 };
 
+/**
+ * Render the HomeHeader Component
+ */
 function HomeHeader(props) {
   const { classes } = props;
   return (

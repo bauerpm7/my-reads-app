@@ -1,6 +1,11 @@
+//Vendor
 import React, { Component } from 'react';
+
+//material-ui
 import { withStyles } from 'material-ui/styles';
 import { Typography } from 'material-ui';
+
+//prop-types
 import PropTypes from 'prop-types';
 
 const styles = theme => ({
@@ -21,7 +26,15 @@ const styles = theme => ({
   }
 });
 
+/**
+ * Description Component
+ * Extends the Component Class
+ */
 class Description extends Component {
+  /**
+   * Renders the Description Component
+   * @return {[html]} returns html for the Description component
+   */
   render() {
     const { classes } = this.props;
     return (

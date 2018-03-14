@@ -1,9 +1,16 @@
+//Vendor
 import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
+
+//prop-types
 import PropTypes from 'prop-types';
-import BookShelf from '../BookShelf';
+
+//material-ui
 import { withStyles } from 'material-ui/styles';
 import { Icon } from 'material-ui';
-import { Link } from 'react-router-dom';
+
+//Components
+import BookShelf from '../BookShelf';
 import LibraryHeader from './LibraryHeader';
 
 const styles = theme => ({
@@ -24,11 +31,27 @@ const styles = theme => ({
   }
 });
 
+/**
+ * Library Component Path /Library
+ */
 class Library extends Component {
+  /**
+   * Gets books by bookShelf and puts them in array for rendering
+   * @param  {array} books     array of all books in library
+   * @param  {string} bookshelf name of the bookshelf
+   * @return {array}           array of books containg books from bookshelf passed in
+   */
   getBookFromShelf(books, bookshelf) {
     return books.filter(book => book.shelf === bookshelf);
   }
 
+  /**
+   * Renders the library component
+   * @param {object} classes passes in the styles
+   * @param {func} upDateBook from {@link App#updateBook}
+   * @param { array } books passes in book array from App Component
+   * @return {html} returns html for the library component
+   */
   render() {
     const { books, updateBook, classes } = this.props;
 
@@ -68,7 +91,8 @@ class Library extends Component {
 
 Library.propTypes = {
   updateBook: PropTypes.func.isRequired,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  books: PropTypes.array.isRequired
 };
 
 export default withStyles(styles)(Library);

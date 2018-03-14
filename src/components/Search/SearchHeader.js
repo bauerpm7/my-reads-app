@@ -1,9 +1,17 @@
+//Vendor
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import { AppBar, Toolbar, Typography, Icon } from 'material-ui';
 import { Link } from 'react-router-dom';
 
+//prop-types
+import PropTypes from 'prop-types';
+
+//material-ui
+import { withStyles } from 'material-ui/styles';
+import { AppBar, Toolbar, Typography, Icon } from 'material-ui';
+
+/**
+ * JSS styles
+ */
 const styles = {
   root: {
     flexGrow: 1
@@ -22,6 +30,9 @@ const styles = {
   }
 };
 
+/**
+ * Render SearchHeader
+ */
 function SearchHeader(props) {
   const { classes } = props;
   return (

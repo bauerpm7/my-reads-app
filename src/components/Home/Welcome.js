@@ -1,9 +1,17 @@
+//Vendor
 import React, { Component } from 'react';
-import { withStyles } from 'material-ui/styles';
-import { Typography, Icon, Button } from 'material-ui';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+// Material-ui Components
+import { withStyles } from 'material-ui/styles';
+import { Typography, Icon, Button } from 'material-ui';
+
+//prop-types component
+import PropTypes from 'prop-types';
+
+/**
+ * JSS Styles
+ */
 const styles = theme => ({
   title: {
     color: 'white',
@@ -46,7 +54,13 @@ const styles = theme => ({
   }
 });
 
+/**
+ * Welcome Component
+ */
 class Welcome extends Component {
+  /**
+   * Render the Welcome Component
+   */
   render() {
     const { classes } = this.props;
     return (

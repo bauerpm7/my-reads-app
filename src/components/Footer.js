@@ -1,9 +1,19 @@
+//Vendor
 import React from 'react';
+
+//prop-types
 import PropTypes from 'prop-types';
+
+//material-ui
 import { withStyles } from 'material-ui/styles';
 import { Typography } from 'material-ui';
+
+//react logo
 import logo from '../containers/logo.svg';
 
+/**
+ * JSS styles
+ */
 const styles = {
   root: {
     flexGrow: 1,
@@ -24,6 +34,9 @@ const styles = {
   }
 };
 
+/**
+ * Render the Footer component same for all pages
+ */
 function Footer(props) {
   const { classes } = props;
   return (

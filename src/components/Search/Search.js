@@ -1,13 +1,25 @@
+//Vendor
 import React, { Fragment, Component } from 'react';
 import Autosuggest from 'react-autosuggest';
+
+//Components
 import { searchTerms } from '../../SearchTerms';
-import { search } from '../../utils/BooksAPI';
-import PropTypes from 'prop-types';
 import BookShelf from '../BookShelf';
-import { Button, Icon } from 'material-ui';
-import { withStyles } from 'material-ui/styles';
 import SearchHeader from './SearchHeader';
 
+// BooksAPI
+import { search } from '../../utils/BooksAPI';
+
+//prop-types
+import PropTypes from 'prop-types';
+
+//material-ui
+import { Button, Icon } from 'material-ui';
+import { withStyles } from 'material-ui/styles';
+
+/**
+ * JSS Styles
+ */
 const styles = theme => ({
   searchContainer: {
     display: 'flex',
@@ -24,7 +36,11 @@ const styles = theme => ({
   }
 });
 
-// Teach Autosuggest how to calculate suggestions for any given input value.
+/**
+ * Teach Autosuggest how to calculate suggestions for any given input value.
+ * @param  {string} value the input string
+ * @return {array}       suggestions from the allowed search terms
+ */
 const getSuggestions = value => {
   const inputValue = value.trim().toLowerCase();
   const inputLength = inputValue.length;
@@ -36,23 +52,34 @@ const getSuggestions = value => {
       );
 };
 
-// When suggestion is clicked, Autosuggest needs to populate the input
-// based on the clicked suggestion. Teach Autosuggest how to calculate the
-// input value for every given suggestion.
+//
+/**
+ * When suggestion is clicked, Autosuggest needs to populate the input
+ * based on the clicked suggestion. Teach Autosuggest how to calculate the
+ * input value for every given suggestion.
+ */
 const getSuggestionValue = suggestion => suggestion;
 
-// Use your imagination to render suggestions.
+/**
+ * Renders auto suggestions.
+ * @param  {string} single suggestion from suggestions array
+ */
 const renderSuggestion = suggestion => <div>{suggestion}</div>;
 
+/**
+ *  Search Component Path /search
+ */
 class Search extends Component {
   constructor() {
     super();
 
-    // Autosuggest is a controlled component.
-    // This means that you need to provide an input value
-    // and an onChange handler that updates this value (see below).
-    // Suggestions also need to be provided to the Autosuggest,
-    // and they are initially empty because the Autosuggest is closed.
+    /**
+     * Autosuggest is a controlled component.
+     * This means that you need to provide an input value
+     *  and an onChange handler that updates this value (see below).
+     *  Suggestions also need to be provided to the Autosuggest,
+     * and they are initially empty because the Autosuggest is closed.
+     */
     this.state = {
       value: '',
       suggestions: [],
@@ -66,15 +93,18 @@ class Search extends Component {
     });
   };
 
-  // Autosuggest will call this function every time you need to update suggestions.
-  // You already implemented this logic above, so just use it.
+  /** Autosuggest will call this function every time you need to update suggestions.
+   * You already implemented this logic above, so just use it.
+   */
   onSuggestionsFetchRequested = ({ value }) => {
     this.setState({
       suggestions: getSuggestions(value)
     });
   };
 
-  // Autosuggest will call this function every time you need to clear suggestions.
+  /**
+   * Autosuggest will call this function every time you need to clear suggestions.
+   */
   onSuggestionsClearRequested = () => {
     this.setState({
       suggestions: []
@@ -120,7 +150,9 @@ class Search extends Component {
   render() {
     const { value, searchResults, suggestions } = this.state;
     const { updateBook, classes } = this.props;
-    // Autosuggest will pass through all these props to the input.
+    /**
+     * Autosuggest will pass through all these props to the input.
+     */
     const inputProps = {
       placeholder: 'Search by title or author',
       value,
@@ -128,7 +160,9 @@ class Search extends Component {
     };
     console.log(searchResults);
 
-    // Finally, render it!
+    /**
+     * Render Autosuggest
+     */
     return (
       <Fragment>
         <SearchHeader />

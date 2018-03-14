@@ -1,9 +1,17 @@
+//Vendor
 import React, { Component } from 'react';
-import Card, { CardContent, CardActions } from 'material-ui/Card';
+
+//prop-types
 import PropTypes from 'prop-types';
+
+//material-ui
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
+import Card, { CardContent, CardActions } from 'material-ui/Card';
 
+/**
+ * JSS Styles for Book Component
+ */
 const styles = theme => ({
   card: {
     width: 210,
@@ -29,13 +37,25 @@ const styles = theme => ({
   }
 });
 
+/**
+ * Book Component
+ */
 class Book extends Component {
+  /**
+   * Changes the selected bookshelf for individial books
+   * @param  {string} selectValue value of bookshelf selection option
+   */
   shelfSelectChange(selectValue) {
     let { book, updateBook } = this.props;
     book.shelf = selectValue;
     updateBook(book);
   }
 
+  /**
+   * Renders the book component
+   *@param {object} book object from the books array
+   *@param {object} classes Jss styles
+   */
   render() {
     let author;
     let bookCover;
@@ -98,8 +118,7 @@ class Book extends Component {
 
 Book.propTypes = {
   classes: PropTypes.object.isRequired,
-  book: PropTypes.object,
-  updateBook: PropTypes.func
+  book: PropTypes.object
 };
 
 export default withStyles(styles)(Book);

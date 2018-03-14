@@ -11,13 +11,22 @@ class App extends Component {
   state = {
     books: []
   };
-
+  /**
+   * When the App Component has rendered it gets the stored books from
+   * local storage
+   * @return {[array]} It returns an array of books
+   */
   componentDidMount() {
     BooksAPI.getAll().then(books => {
       this.setState({ books });
     });
   }
-
+  /**
+   * Updates a book object when the user changes the shelf
+   * @param  {object} bookToUpdate takes in a book to be updated
+   * @return {object} book returns the updated book and pushes
+   * it to the books array
+   */
   updateBook(bookToUpdate) {
     const { books } = this.state;
     let haveBook = false;
@@ -39,6 +48,11 @@ class App extends Component {
       this.setState({ books: updatedBooks })
     );
   }
+
+  /**
+   * Renders the Application
+   * @return {html} returns the html for the App
+   */
 
   render() {
     const { books } = this.state;

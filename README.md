@@ -1,7 +1,5 @@
 # MyREADS App
 
-## What
-
 This is my submission for Project 5 of the [Udacity Front End Developer 
 Nanodegree](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001). 
 MyReads is a library management app that keeps track of what books

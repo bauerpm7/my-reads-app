@@ -2,22 +2,18 @@
 import React, { Fragment, Component } from 'react';
 // import Autosuggest from 'react-autosuggest';
 
-import * as BooksAPI from '../../utils/BooksAPI';
-import Book from '../Book';
-
 //Components
 import { searchTerms } from '../../SearchTerms';
 import BookShelf from '../BookShelf';
 import SearchHeader from './SearchHeader';
 
 // BooksAPI
-// import { search } from '../../utils/BooksAPI';
+import * as BooksAPI from '../../utils/BooksAPI';
 
 //prop-types
 import PropTypes from 'prop-types';
 
 //material-ui
-// import { Button, Icon } from 'material-ui';
 import { withStyles } from 'material-ui/styles';
 
 /**
@@ -40,84 +36,9 @@ const styles = theme => ({
 });
 
 /**
- * Teach Autosuggest how to calculate suggestions for any given input value.
- * @param  {string} value the input string
- * @return {array}       suggestions from the allowed search terms
- */
-// const getSuggestions = value => {
-//   const inputValue = value.trim().toLowerCase();
-//   const inputLength = inputValue.length;
-
-//   return inputLength === 0
-//     ? []
-//     : searchTerms.filter(
-//         term => term.toLowerCase().slice(0, inputLength) === inputValue
-//       );
-// };
-
-//
-/**
- * When suggestion is clicked, Autosuggest needs to populate the input
- * based on the clicked suggestion. Teach Autosuggest how to calculate the
- * input value for every given suggestion.
- */
-// const getSuggestionValue = suggestion => suggestion;
-
-/**
- * Renders auto suggestions.
- * @param  {string} single suggestion from suggestions array
- */
-// const renderSuggestion = suggestion => <div>{suggestion}</div>;
-
-/**
  *  Search Component Path /search
  */
 class Search extends Component {
-  // constructor() {
-  //   super();
-
-  /**
-   * Autosuggest is a controlled component.
-   * This means that you need to provide an input value
-   *  and an onChange handler that updates this value (see below).
-   *  Suggestions also need to be provided to the Autosuggest,
-   * and they are initially empty because the Autosuggest is closed.
-   */
-  //   this.state = {
-  //     value: '',
-  //     suggestions: [],
-  //     searchResults: []
-  //   };
-  // }
-
-  // onChange = (event, { newValue }) => {
-  //   this.setState({
-  //     value: newValue
-  //   });
-  // };
-
-  /** Autosuggest will call this function every time you need to update suggestions.
-   * You already implemented this logic above, so just use it.
-   */
-  // onSuggestionsFetchRequested = ({ value }) => {
-  //   this.setState({
-  //     suggestions: getSuggestions(value)
-  //   });
-  // };
-
-  /**
-   * Autosuggest will call this function every time you need to clear suggestions.
-   */
-  // onSuggestionsClearRequested = () => {
-  //   this.setState({
-  //     suggestions: []
-  //   });
-  // };
-
-  //sort books by shelf
-  // getBookFromShelf(books, bookshelf) {
-  //   return books.filter(book => book.shelf === bookshelf);
-  // }
   state = {
     search: '', //this is the user's input
     searchResults: [] //response from the server, if any
@@ -154,24 +75,6 @@ class Search extends Component {
     });
   }
 
-  // handleSubmit () {
-  //   const { libraryBooks } = this.props;
-  //   let query = search.trim();
-  //   if (searchQuery === '') {
-  //     this.setState({ searchResults: [] });
-  //     return;
-  //   }
-  //   BooksAPI.search( query )
-  //     .then((data) => {
-  //       if (data) { //to guard against undefined
-  //         this.setState({
-  //           searchResults: data || []
-  //         });
-  //       }
-  //     });
-  //   }
-  // }
-
   handleChange(e) {
     e.preventDefault();
 
@@ -188,23 +91,13 @@ class Search extends Component {
   getBookFromShelf(books, bookshelf) {
     return books.filter(book => book.shelf === bookshelf);
   }
-
+  /**
+   * Render Search Bar and Results
+   */
   render() {
     const { searchResults, search } = this.state;
     const { updateBook, classes } = this.props;
-    /**
-     * Autosuggest will pass through all these props to the input.
-     //  */
-    // const inputProps = {
-    //   placeholder: 'Search by title or author',
-    //   value,
-    //   onChange: this.onChange
-    // };
-    // console.log(searchResults);
 
-    /**
-     * Render Autosuggest
-     */
     return (
       <Fragment>
         <SearchHeader />
@@ -218,13 +111,13 @@ class Search extends Component {
               />
             </div>
           </div>
-          <div className="search-books-results">
-            <BookShelf
-              books={this.getBookFromShelf(searchResults, 'none')}
-              updateBook={updateBook}
-              bookShelfName="Currently Reading"
-            />
-          </div>
+        </div>
+        <div className="search-books-results">
+          <BookShelf
+            books={this.getBookFromShelf(searchResults, 'none')}
+            updateBook={updateBook}
+            bookShelfName="Search Results"
+          />
         </div>
       </Fragment>
     );

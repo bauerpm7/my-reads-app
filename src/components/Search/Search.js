@@ -1,6 +1,5 @@
 //Vendor
 import React, { Fragment, Component } from 'react';
-// import Autosuggest from 'react-autosuggest';
 
 //Components
 import { searchTerms } from '../../SearchTerms';
@@ -27,11 +26,14 @@ const styles = theme => ({
     width: '100%',
     flexWrap: 'wrap'
   },
-  button: {
-    marginTop: 30
-  },
   bookshelfContainer: {
     paddingBottom: 120
+  },
+  input: {
+    fontSize: 24,
+    width: 300,
+    textAlign: 'center',
+    padding: 10
   }
 });
 
@@ -102,15 +104,13 @@ class Search extends Component {
       <Fragment>
         <SearchHeader />
         <div className={classes.searchContainer}>
-          <div className="search-books-bar">
-            <div className="search-books-input-wrapper">
-              <input
-                onChange={this.handleChange.bind(this)}
-                type="text"
-                placeholder="Search by title or author"
-              />
-            </div>
-          </div>
+          <input
+            onChange={this.handleChange.bind(this)}
+            type="text"
+            placeholder="Search by title or author"
+            className={classes.input}
+            autoFocus
+          />
         </div>
         <div className="search-books-results">
           <BookShelf

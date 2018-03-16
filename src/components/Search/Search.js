@@ -27,7 +27,7 @@ const styles = theme => ({
     flexWrap: 'wrap'
   },
   bookshelfContainer: {
-    paddingBottom: 120
+    padding: [30, 30, 120, 30]
   },
   input: {
     fontSize: 24,
@@ -97,7 +97,7 @@ class Search extends Component {
    * Render Search Bar and Results
    */
   render() {
-    const { searchResults, search } = this.state;
+    const { searchResults } = this.state;
     const { updateBook, classes } = this.props;
 
     return (
@@ -112,7 +112,7 @@ class Search extends Component {
             autoFocus
           />
         </div>
-        <div className="search-books-results">
+        <div className={classes.bookshelfContainer}>
           <BookShelf
             books={this.getBookFromShelf(searchResults, 'none')}
             updateBook={updateBook}

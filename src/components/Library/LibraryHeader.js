@@ -41,13 +41,8 @@ function LibraryHeader(props) {
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Typography variant="title" className={classes.flex}>
-            MyReads - Library
+            Welcome to MyReads
           </Typography>
-          <Link to="/" className={classes.link}>
-            <Icon className={classes.icon} aria-label="home">
-              home
-            </Icon>
-          </Link>
           <Link to="/search" className={classes.link}>
             <Icon className={classes.icon} aria-label="home">
               search

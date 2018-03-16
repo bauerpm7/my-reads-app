@@ -43,11 +43,6 @@ function SearchHeader(props) {
             MyReads - Search
           </Typography>
           <Link to="/" className={classes.link}>
-            <Icon className={classes.icon} aria-label="home">
-              home
-            </Icon>
-          </Link>
-          <Link to="/library" className={classes.link}>
             <Icon className={classes.icon} aria-label="library">
               library_books
             </Icon>

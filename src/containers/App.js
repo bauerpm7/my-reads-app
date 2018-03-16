@@ -3,7 +3,6 @@ import './App.css';
 import * as BooksAPI from '../utils/BooksAPI';
 import { Route } from 'react-router-dom';
 import Library from '../components/Library/Library';
-import Home from '../components/Home/Home';
 import Search from '../components/Search/Search';
 import Footer from '../components/Footer';
 
@@ -53,7 +52,6 @@ class App extends Component {
    * Renders the Application
    * @return {html} returns the html for the App
    */
-
   render() {
     const { books } = this.state;
     console.log(books);
@@ -62,14 +60,6 @@ class App extends Component {
         <Route
           exact
           path="/"
-          render={() => (
-            <div>
-              <Home />
-            </div>
-          )}
-        />
-        <Route
-          path="/library"
           render={() => (
             <div>
               <Library books={books} updateBook={this.updateBook.bind(this)} />

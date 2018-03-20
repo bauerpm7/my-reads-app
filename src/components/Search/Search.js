@@ -5,6 +5,7 @@ import React, { Fragment, Component } from 'react';
 import { searchTerms } from '../../SearchTerms';
 import BookShelf from '../BookShelf';
 import SearchHeader from './SearchHeader';
+import SearchTermsModal from './searchTermsModal';
 
 // BooksAPI
 import * as BooksAPI from '../../utils/BooksAPI';
@@ -14,6 +15,7 @@ import PropTypes from 'prop-types';
 
 //material-ui
 import { withStyles } from 'material-ui/styles';
+import { Button } from 'material-ui';
 
 /**
  * JSS Styles
@@ -24,16 +26,28 @@ const styles = theme => ({
     justifyContent: 'center',
     paddingTop: 120,
     width: '100%',
-    flexWrap: 'wrap'
+    height: 50
   },
   bookshelfContainer: {
-    padding: [30, 30, 120, 30]
+    paddingBottom: 120,
+    paddingLeft: 30,
+    paddingRight: 30
   },
   input: {
     fontSize: 24,
-    width: 300,
+    width: 280,
     textAlign: 'center',
-    padding: 10
+    padding: 10,
+    borderColor: '#A3AEBB',
+    borderWidth: 2
+  },
+  buttonContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    width: '100%'
+  },
+  button: {
+    marginTop: 50
   }
 });
 
@@ -43,10 +57,17 @@ const styles = theme => ({
 class Search extends Component {
   state = {
     search: '', //this is the user's input
-    searchResults: [] //response from the server, if any
+    searchResults: [], //response from the server, if any
+    isOpen: false
   };
 
-  handleSubmit() {
+  toggleModal = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  };
+
+  handleSubmit = () => {
     const { libraryBooks } = this.props;
     const { search } = this.state;
     let query = search.trim();
@@ -55,27 +76,28 @@ class Search extends Component {
       this.setState({ searchResults: [] });
       return;
     }
-
-    BooksAPI.search(query, 10).then(searchResults => {
-      //only add books to the search results if they aren't already in the library
-      if (searchResults && searchResults.length) {
-        let normalizedBooks = searchResults.map(book => {
-          let bookInLibrary;
-          libraryBooks.map(libraryBook => {
-            if (libraryBook.id === book.id) {
-              bookInLibrary = libraryBook;
-            }
-            return null;
+    if (searchTerms.includes(query)) {
+      BooksAPI.search(query, 10).then(searchResults => {
+        //only add books to the search results if they aren't already in the library
+        if (searchResults && searchResults.length) {
+          let normalizedBooks = searchResults.map(book => {
+            let bookInLibrary;
+            libraryBooks.map(libraryBook => {
+              if (libraryBook.id === book.id) {
+                bookInLibrary = libraryBook;
+              }
+              return null;
+            });
+            //set shelf property of books in search results to 'none'
+            book.shelf = bookInLibrary ? bookInLibrary.shelf : 'none';
+            return book;
           });
-          //set shelf property of books in search results to 'none'
-          book.shelf = bookInLibrary ? bookInLibrary.shelf : 'none';
-          return book;
-        });
-        //add search results to the searchResults array.
-        this.setState({ searchResults: normalizedBooks });
-      }
-    });
-  }
+          //add search results to the searchResults array.
+          this.setState({ searchResults: normalizedBooks });
+        }
+      });
+    }
+  };
 
   handleChange(e) {
     e.preventDefault();
@@ -111,6 +133,18 @@ class Search extends Component {
             className={classes.input}
             autoFocus
           />
+        </div>
+        <div className={classes.buttonContainer}>
+          <Button
+            className={classes.button}
+            variant="raised"
+            onClick={this.toggleModal}
+          >
+            Search Terms
+          </Button>
+          <SearchTermsModal show={this.state.isOpen} onClose={this.toggleModal}>
+            Search Terms
+          </SearchTermsModal>
         </div>
         <div className={classes.bookshelfContainer}>
           <BookShelf

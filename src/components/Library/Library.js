@@ -32,7 +32,7 @@ const styles = theme => ({
 });
 
 /**
- * Library Component Path /Library
+ * Library Component Path /
  */
 class Library extends Component {
   /**

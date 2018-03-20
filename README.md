@@ -8,6 +8,10 @@ for a RESTful books API. MyReads can search for books, add books to shelves, and
 books between shelves. It is a responsive, mobile-first app built with Material-UI
 and styled-components that look great on mobile, tablet, or desktop.
 
+## Demo
+
+Visit the live demo site at https://my-reads-app-bauerpm7.herokuapp.com/
+
 
 ## Installing
 MyReads was built with create-react-app & requires nothing more than cloning the

@@ -31,6 +31,10 @@ const styles = {
   },
   logo: {
     height: 20
+  },
+  link: {
+    color: 'white',
+    paddingLeft: 10
   }
 };
 
@@ -45,7 +49,14 @@ function Footer(props) {
         Created in<a href="https://reactjs.org/" aria-label="react">
           <img src={logo} alt="react" className={classes.logo} />
         </a>
-        by Michael Bauer
+        by Michael Bauer.
+        <a
+          href="https://github.com/bauerpm7/my-reads-app"
+          className={classes.link}
+          aria-label="my github repo"
+        >
+          Get the code.
+        </a>
       </Typography>
     </div>
   );

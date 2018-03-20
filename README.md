@@ -26,3 +26,14 @@ npm install
 npm start
 ```
 
+## Important
+
+The backend API is limited to a set of cached search results and is, thus, limited to those terms. 
+You can find a list of these terms by looking in searchTerms.js or clicking the 'Search Terms' button 
+on the search page of the app.
+
+## Acknowledgements
+
+The Search Terms Modal Window is a modified version of the modal window code found
+in David Cedia's blog [Modal Dialogs in React](https://daveceddia.com/open-modal-in-react/).
+

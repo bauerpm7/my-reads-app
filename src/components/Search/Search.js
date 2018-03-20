@@ -2,7 +2,6 @@
 import React, { Fragment, Component } from 'react';
 
 //Components
-import { searchTerms } from '../../SearchTerms';
 import BookShelf from '../BookShelf';
 import SearchHeader from './SearchHeader';
 import SearchTermsModal from './searchTermsModal';
@@ -15,7 +14,7 @@ import PropTypes from 'prop-types';
 
 //material-ui
 import { withStyles } from 'material-ui/styles';
-import { Button } from 'material-ui';
+import { Button, Typography } from 'material-ui';
 
 /**
  * JSS Styles
@@ -47,7 +46,13 @@ const styles = theme => ({
     width: '100%'
   },
   button: {
-    marginTop: 50
+    marginTop: 20
+  },
+  trouble: {
+    paddingRight: 20,
+    paddingLeft: 20,
+    marginTop: 40,
+    textAlign: 'center'
   }
 });
 
@@ -61,12 +66,20 @@ class Search extends Component {
     isOpen: false
   };
 
+  /**
+   * toggle state of modal
+   */
   toggleModal = () => {
     this.setState({
       isOpen: !this.state.isOpen
     });
   };
 
+  /**
+   * Submits the search query to the search API, if the search results are not already
+   * in the library, it pushes the search results to an array for rendering.
+   *
+   */
   handleSubmit = () => {
     const { libraryBooks } = this.props;
     const { search } = this.state;
@@ -76,29 +89,32 @@ class Search extends Component {
       this.setState({ searchResults: [] });
       return;
     }
-    if (searchTerms.includes(query)) {
-      BooksAPI.search(query, 10).then(searchResults => {
-        //only add books to the search results if they aren't already in the library
-        if (searchResults && searchResults.length) {
-          let normalizedBooks = searchResults.map(book => {
-            let bookInLibrary;
-            libraryBooks.map(libraryBook => {
-              if (libraryBook.id === book.id) {
-                bookInLibrary = libraryBook;
-              }
-              return null;
-            });
-            //set shelf property of books in search results to 'none'
-            book.shelf = bookInLibrary ? bookInLibrary.shelf : 'none';
-            return book;
+    BooksAPI.search(query, 10).then(searchResults => {
+      //only add books to the search results if they aren't already in the library
+      if (searchResults && searchResults.length) {
+        let normalizedBooks = searchResults.map(book => {
+          let bookInLibrary;
+          libraryBooks.map(libraryBook => {
+            if (libraryBook.id === book.id) {
+              bookInLibrary = libraryBook;
+            }
+            return null;
           });
-          //add search results to the searchResults array.
-          this.setState({ searchResults: normalizedBooks });
-        }
-      });
-    }
+          //set shelf property of books in search results to 'none'
+          book.shelf = bookInLibrary ? bookInLibrary.shelf : 'none';
+          return book;
+        });
+        //add search results to the searchResults array.
+        this.setState({ searchResults: normalizedBooks });
+      }
+    });
   };
 
+  /**
+   * When the search input changes the state of 'search' is changed to the new
+   * search input and handleSubmit is called
+   * @param  {event} e search input changes
+   */
   handleChange(e) {
     e.preventDefault();
 
@@ -112,15 +128,12 @@ class Search extends Component {
     );
   }
 
-  getBookFromShelf(books, bookshelf) {
-    return books.filter(book => book.shelf === bookshelf);
-  }
   /**
    * Render Search Bar and Results
    */
   render() {
     const { searchResults } = this.state;
-    const { updateBook, classes } = this.props;
+    const { updateBook, classes, getBookFromShelf } = this.props;
 
     return (
       <Fragment>
@@ -134,6 +147,14 @@ class Search extends Component {
             autoFocus
           />
         </div>
+        <Typography
+          variant="subheading"
+          component="h3"
+          className={classes.trouble}
+        >
+          Having trouble finding what you're looking for? Check out the list of
+          available search terms.
+        </Typography>
         <div className={classes.buttonContainer}>
           <Button
             className={classes.button}
@@ -148,7 +169,7 @@ class Search extends Component {
         </div>
         <div className={classes.bookshelfContainer}>
           <BookShelf
-            books={this.getBookFromShelf(searchResults, 'none')}
+            books={getBookFromShelf(searchResults, 'none')}
             updateBook={updateBook}
             bookShelfName="Search Results"
           />

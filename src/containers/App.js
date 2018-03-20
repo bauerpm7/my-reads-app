@@ -49,6 +49,17 @@ class App extends Component {
   }
 
   /**
+   * Iterates over the books  or searchResults array and gets only those books that are in the
+   * specified  bookshelf
+   * @param  {array} books     all books that are currently in the searchResults array
+   * @param  {string} bookshelf  name of the bookshelf
+   * @return { array } array of books containing books from bookshelf
+   */
+  getBookFromShelf(books, bookshelf) {
+    return books.filter(book => book.shelf === bookshelf);
+  }
+
+  /**
    * Renders the Application
    * @return {html} returns the html for the App
    */
@@ -62,7 +73,11 @@ class App extends Component {
           path="/"
           render={() => (
             <div>
-              <Library books={books} updateBook={this.updateBook.bind(this)} />
+              <Library
+                books={books}
+                updateBook={this.updateBook.bind(this)}
+                getBookFromShelf={this.getBookFromShelf.bind(this)}
+              />
             </div>
           )}
         />
@@ -73,6 +88,7 @@ class App extends Component {
               <Search
                 libraryBooks={books}
                 updateBook={this.updateBook.bind(this)}
+                getBookFromShelf={this.getBookFromShelf.bind(this)}
               />
             </div>
           )}

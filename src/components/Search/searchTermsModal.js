@@ -1,9 +1,14 @@
+//Vendor
 import React from 'react';
+
+//prop-types
 import PropTypes from 'prop-types';
 
+//material-ui
 import { withStyles } from 'material-ui/styles';
 import { Button, Typography } from 'material-ui';
 
+//allowable search terms
 import { searchTerms } from '../../SearchTerms';
 
 const styles = theme => ({
@@ -46,7 +51,7 @@ const styles = theme => ({
 
 class SearchTermsModal extends React.Component {
   render() {
-    const { classes, onClose, show, children } = this.props;
+    const { classes, onClose, show } = this.props;
     // Render nothing if the "show" prop is false
     if (!show) {
       return null;

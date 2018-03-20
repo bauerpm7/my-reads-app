@@ -36,16 +36,6 @@ const styles = theme => ({
  */
 class Library extends Component {
   /**
-   * Gets books by bookShelf and puts them in array for rendering
-   * @param  {array} books     array of all books in library
-   * @param  {string} bookshelf name of the bookshelf
-   * @return {array}           array of books containg books from bookshelf passed in
-   */
-  getBookFromShelf(books, bookshelf) {
-    return books.filter(book => book.shelf === bookshelf);
-  }
-
-  /**
    * Renders the library component
    * @param {object} classes passes in the styles
    * @param {func} upDateBook from {@link App#updateBook}
@@ -53,24 +43,24 @@ class Library extends Component {
    * @return {html} returns html for the library component
    */
   render() {
-    const { books, updateBook, classes } = this.props;
+    const { books, updateBook, classes, getBookFromShelf } = this.props;
 
     return (
       <Fragment>
         <LibraryHeader />
         <div className={classes.library}>
           <BookShelf
-            books={this.getBookFromShelf(books, 'currentlyReading')}
+            books={getBookFromShelf(books, 'currentlyReading')}
             updateBook={updateBook}
             bookShelfName="Currently Reading"
           />
           <BookShelf
-            books={this.getBookFromShelf(books, 'wantToRead')}
+            books={getBookFromShelf(books, 'wantToRead')}
             updateBook={updateBook}
             bookShelfName="Want To Read"
           />
           <BookShelf
-            books={this.getBookFromShelf(books, 'read')}
+            books={getBookFromShelf(books, 'read')}
             updateBook={updateBook}
             bookShelfName="Read"
           />
